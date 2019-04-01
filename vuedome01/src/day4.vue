@@ -11,14 +11,14 @@
     <ul>
       <li v-for="(item,key) in list" v-if="!item.checked">
         <!--<input type="checkbox" @click="checkedstate(key)" v-model="item.checked">{{item.title}}-->
-        <input type="checkbox"  v-model="item.checked">{{item.title}}
+        <input type="checkbox"  @click="checkedstat(key)" v-model="item.checked">{{item.title}}
         <button @click="delbutton(key)">删除</button>
       </li>
     </ul>
     <h2>已完成</h2>
     <ul>
       <li v-for="(item,key) in list" v-if="item.checked">
-        <input type="checkbox" v-model="item.checked">{{item.title}}
+        <input type="checkbox" v-model="item.checked" @click="checkedstat(key)" >{{item.title}}
         <button @click="delbutton(key)">删除</button>
       </li>
     </ul>
@@ -32,35 +32,37 @@
 </template>
 
 <script>
+  import storage from './model/storage.js';
   export default {
     name: "day4",
     data() {
       return {
         flag: false,
         todo: '',
-        list: [
-          {
-            title: '录制nodejs',
-            checked: true
-          }, {
-            title: '录制vue',
-            checked: false
-          }, {
-            title: '录制java',
-            checked: false
-          }, {
-            title: '录制c++',
-            checked: false
-          }
-        ]
+        list: []
+      }
+    },
+    mounted(){
+      this.isSupportLocalStorage()
+      //从本地获取存储的数据
+      var list = JSON.parse(localStorage.getItem('list'))
+      if (list){
+        this.list = list;
       }
     },
     methods: {
+      //判断浏览器是否支持localstorage
+      isSupportLocalStorage () {
+        if(window.localStorage){
+          console.log("支持")
+        }
+      },
       addkeyboard(e){
         console.log(e.keyCode);
         if (e.keyCode ==13) {
           //将值传入数组list中
           this.list.push({title: this.todo, checked: false});
+          localStorage.setItem('list',JSON.stringify(this.list));
         }
       },
       additem() {
@@ -68,6 +70,7 @@
         console.log(this.todo);
         //2.将值传入数组list中
         this.list.push({title: this.todo, checked: false});
+        localStorage.setItem('list',JSON.stringify(this.list));
       },
       delitem() {
         //1.获取文本框的值
@@ -81,13 +84,18 @@
         } else {
           alert("该值不存在");
         }
+        localStorage.setItem('list',JSON.stringify(this.list));
       },
       delbutton(val) {
         this.list.splice(val, 1)
+        localStorage.setItem('list',JSON.stringify(this.list));
       },
-      // checkedstate(val){
-      //   this.list[val].checked = true;
-      // }
+      checkedstat(val){
+        console.log(val)
+        this.list[val].checked = !this.list[val].checked;
+        localStorage.setItem('list',JSON.stringify(this.list));
+
+      }
     }
   }
 </script>
