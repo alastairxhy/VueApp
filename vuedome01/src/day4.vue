@@ -45,7 +45,8 @@
     mounted(){
       this.isSupportLocalStorage()
       //从本地获取存储的数据
-      var list = JSON.parse(localStorage.getItem('list'))
+      // var list = JSON.parse(localStorage.getItem('list'))
+      var list =  JSON.parse(storage.get('list'));
       if (list){
         this.list = list;
       }
@@ -62,7 +63,8 @@
         if (e.keyCode ==13) {
           //将值传入数组list中
           this.list.push({title: this.todo, checked: false});
-          localStorage.setItem('list',JSON.stringify(this.list));
+          storage.set('list',this.list);
+          // localStorage.setItem('list',JSON.stringify(this.list));
         }
       },
       additem() {
@@ -70,7 +72,8 @@
         console.log(this.todo);
         //2.将值传入数组list中
         this.list.push({title: this.todo, checked: false});
-        localStorage.setItem('list',JSON.stringify(this.list));
+        storage.set('list',this.list);
+        // localStorage.setItem('list',JSON.stringify(this.list));
       },
       delitem() {
         //1.获取文本框的值
@@ -84,16 +87,19 @@
         } else {
           alert("该值不存在");
         }
-        localStorage.setItem('list',JSON.stringify(this.list));
+        storage.set('list',this.list);
+        // localStorage.setItem('list',JSON.stringify(this.list));
       },
       delbutton(val) {
         this.list.splice(val, 1)
-        localStorage.setItem('list',JSON.stringify(this.list));
+        storage.set('list',this.list);
+        // localStorage.setItem('list',JSON.stringify(this.list));
       },
       checkedstat(val){
         console.log(val)
         this.list[val].checked = !this.list[val].checked;
-        localStorage.setItem('list',JSON.stringify(this.list));
+        storage.set('list',this.list);
+        // localStorage.setItem('list',JSON.stringify(this.list));
 
       }
     }
