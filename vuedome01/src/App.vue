@@ -5,6 +5,8 @@
     <v-home></v-home>
     <v-news></v-news>
     <v-resource></v-resource>
+    <br><hr>
+    <v-axios></v-axios>
   </div>
 
 </template>
@@ -17,7 +19,8 @@
   */
   import Home from './components/Home.vue'; //引入主页组件
   import News from './components/News.vue'; //引入新闻组件
-  import Resource from './components/Resource.vue'; //引入请求服务器组件
+  import Resource from './components/Resource.vue'; //引入resource请求服务器组件
+  import Axios from "./components/Axios"; //引入axios请求服务器组件
   export default {
     name: 'app',
     data() {  //业务逻辑里面定义的数据
@@ -28,7 +31,8 @@
     components:{
       'v-home':Home,
       'v-news':News,
-      'v-resource':Resource
+      'v-resource':Resource,
+      'v-axios':Axios
     }
   }
 </script>
