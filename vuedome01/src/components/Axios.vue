@@ -6,13 +6,13 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import axios from 'axios';//引入第三方插件
+  import url from '../model/url.js';//引入请求地址
   export default {
     name: "axios",
     data() {
       return {
         msg: '',
-        url: 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1',
         list: []
       }
     },
@@ -22,7 +22,7 @@
     methods: {
       getData() {
         const axios = require('axios');
-        axios.get(this.url).then(res => {
+        axios.get(url).then(res => {
             console.log(res);
           }).catch(err => {
           console.log(res);

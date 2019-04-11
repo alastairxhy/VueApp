@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import url from '../model/url.js';
   export default {
     name: "Resource",
     data() {
@@ -25,14 +26,13 @@
     methods: {
       getData() {
         //从服务器获取数据
-        var url='http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1'
         this.$http.get(url).then((res) => {
           // console.log(res);
           for (var i=0;i<res.body.result.length;i++) {
             this.list.push(res.body.result[i]);
           }
           // console.log(this.list)
-        }), (res) => {
+        }), (error) => {
           //error
         }
       }

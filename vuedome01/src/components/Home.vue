@@ -4,6 +4,7 @@
     <h2>这是一个首页组件</h2>
     <button @click="homerun()">主页-点我一下试试</button>
     <button @click="getChildData()">主页-获取子组件header的属性和方法</button>
+    <button @click="emitNew()">主页-获取非父子组件new的属性和方法</button>
     <v-header :datahome="homemsg" :title="obj" :homerun="homerun" :home="this" ref="header"></v-header>
     <!--绑定title 是为了告诉Vue title是数字 而不是字符串-->
     <!--验证 props    title:String-->
@@ -26,36 +27,48 @@
   *
   * */
   import Header from './Header.vue'; //引入头部组件
+  import emitvue from '../model/emit.js';
+
   export default {
     name: "Home",
     data() {
       return {
         homemsg: "我是home",
-        homeid:'1',
-        obj:[
+        homeid: '1',
+        obj: [
           {
-            id:1,
-            name:'xhy',
-            gender:'man'
+            id: 1,
+            name: 'xhy',
+            gender: 'man'
           },
-          {id:2,
-            name:'x',
-            gender:'man'}
+          {
+            id: 2,
+            name: 'x',
+            gender: 'man'
+          }
         ]
       }
     },
     methods: {
       homerun(data) {
         console.log(this.obj[0]);
-        alert(this.homemsg+data);
+        alert(this.homemsg + data);
       },
-      getChildData(){
+      getChildData() {
         console.log(this.$refs.header.headermsg);
         this.getChildFunction();
       },
-      getChildFunction(){
+      getChildFunction() {
         this.$refs.header.headerconsole();
+      },
+      emitNew() {
+        emitvue.$emit('new-msg', this.homemsg)
       }
+    },
+    mounted() {
+      emitvue.$on('home-msg',(res)=>{
+        console.log(res)
+      })
     },
     components: {
       'v-header': Header
