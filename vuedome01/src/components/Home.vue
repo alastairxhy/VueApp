@@ -62,12 +62,14 @@
         this.$refs.header.headerconsole();
       },
       emitNew() {
-        emitvue.$emit('new-msg', this.homemsg)
+        //广播
+        emitvue.$emit('home-msg', this.homemsg)
       }
     },
     mounted() {
-      emitvue.$on('home-msg',(res)=>{
-        console.log(res)
+      //监听广播
+      emitvue.$on('new-msg', (res) => {
+        console.log(res[1])
       })
     },
     components: {

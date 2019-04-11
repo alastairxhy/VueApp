@@ -29,15 +29,21 @@
       }
     },
     methods: {
+      alternew(){
+        alter('我是新闻组件');
+      },
       emitHome() {
-        emitvue.$emit('home-msg', this.newsmsg);
+        //广播
+        emitvue.$emit('new-msg', [this.newsmsg,this.newid])
       }
     },
     mounted() {
-      emitvue.$on('new-msg', (res) => {
+      //监听广播
+      emitvue.$on('home-msg', (res) => {
         console.log(res);
       });
     },
+
     components: {
       'v-header': Header
     }
