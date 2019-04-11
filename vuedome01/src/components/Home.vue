@@ -31,6 +31,7 @@
     data() {
       return {
         homemsg: "我是home",
+        homeid:'1',
         obj:[
           {
             id:1,

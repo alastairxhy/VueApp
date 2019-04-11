@@ -30,8 +30,7 @@
       datahome:String,
       title:Array,
       homerun:Function,
-      home:Object
-
+      // home:Object
     },
     methods: {
       headerrun() {
@@ -42,7 +41,8 @@
         alert("header组件被调用了")
       },
       getParentData(){
-        console.log(this.$parent.homemsg);
+        console.log(this.$parent.newid);
+        console.log(this.$parent);
       }
     }
   }
