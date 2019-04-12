@@ -2,8 +2,20 @@
   <!--vue的模板里面 所有的内容要被一个根节点包含起来 -->
   <div id="app">
     这是根组件
-    <v-home></v-home>
-    <v-news></v-news>
+<!--    引入动态路由，暂时注释-->
+<!--    <v-home></v-home>-->
+<!--    <v-news></v-news>-->
+    <p>
+      <!-- 使用 router-link 组件来导航. -->
+      <!-- 通过传入 `to` 属性指定链接. -->
+      <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+      <router-link to="/">首页</router-link>
+      <router-link to="/home">主页</router-link>
+      <router-link to="/news">新闻</router-link>
+    </p>
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view></router-view>
     <v-resource></v-resource>
     <br><hr>
     <v-axios></v-axios>
@@ -17,8 +29,13 @@
   * 2.挂载组件
   * 3.在模板中使用
   */
-  import Home from './components/Home.vue'; //引入主页组件
-  import News from './components/News.vue'; //引入新闻组件
+
+  /*
+  * 引入动态路由，暂时注释
+  * import Home from './components/Home.vue'; //引入主页组件
+  * import News from './components/News.vue'; //引入新闻组件
+  * */
+
   import Resource from './components/Resource.vue'; //引入resource请求服务器组件
   import Axios from "./components/Axios"; //引入axios请求服务器组件
   export default {
@@ -29,8 +46,6 @@
       }
     },
     components:{
-      'v-home':Home,
-      'v-news':News,
       'v-resource':Resource,
       'v-axios':Axios
     }
