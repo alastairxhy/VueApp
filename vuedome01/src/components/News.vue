@@ -3,14 +3,8 @@
     <ul> 这是新闻组件
       <button @click="emitHome()">新闻-获取非父子组件home的属性和方法</button>
       <!--        <v-header ></v-header>-->
-      <li>
-        111
-      </li>
-      <li>
-        222
-      </li>
-      <li>
-        333
+      <li v-for="(listitem,key) in list" >
+        <router-link :to="'/content/'+key" >{{key}}---{{listitem}}</router-link>
       </li>
     </ul>
   </div>
@@ -25,7 +19,8 @@
     data() {
       return {
         newsmsg: '我是new',
-        newid: 2
+        newid: 2,
+        list:['111','222','333']
       }
     },
     methods: {
