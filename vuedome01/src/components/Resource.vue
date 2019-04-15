@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import url from '../model/url.js';
+  import url from '../model/newsApi.js';
   export default {
     name: "Resource",
     data() {

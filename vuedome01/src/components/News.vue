@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import url from '../model/url.js'; //引入接口
+  import newsApi from '../model/newsApi.js'; //引入接口
   import Header from './Header.vue'; //引入头部组件
   import emitvue from '../model/emit.js';
 
@@ -34,7 +34,7 @@
         emitvue.$emit('new-msg', [this.newsmsg,this.newid])
       },
       getNewsData(){
-        this.$http.jsonp(url).then((res)=>{
+        this.$http.jsonp(newsApi.url).then((res)=>{
           console.log(res.body.result);
           this.list = res.body.result;
         },(err)=>{

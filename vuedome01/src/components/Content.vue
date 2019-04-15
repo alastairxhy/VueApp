@@ -1,7 +1,8 @@
 <template>
-    <div>
-      <p id="content">我是具体内容</p>
-    </div>
+  <div>
+    <p id="content">{{list.title}}</p>
+    <div v-html="list.content"></div>
+  </div>
 </template>
 
 <script>
@@ -15,34 +16,37 @@
   * */
   /*get 传值
   * */
-    export default {
-        name: "Content",
-      data(){
-          return{
+  import newsApi from '../model/newsApi.js';
 
-          }
-      },
-      methods:{
-        requestNews(){
-          var api ='http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid=488'
-          this.$http.get(api).then((res=>{
-            console.log(res.bodyText)
-          }),(err)=>{
-            console.log(err)
-          })
-        }
-      },
-      mounted() {
-        console.log(this.$route.params)
-          // console.log(this.$route.query)
-        this.requestNews();
+  export default {
+    name: "Content",
+    data() {
+      return {
+        list: {}
       }
+    },
+    methods: {
+      requestNews() {
+        this.$http.get(newsApi.api + this.$route.params.aid).then((res) => {
+          console.log(res);
+          this.list = res.body.result[0];
+        }), (err) => {
+          console.log(err);
+        }
+      }
+    },
+    mounted() {
+      console.log(this.$route.params.aid)
+      // console.log(this.$route.query)
+      this.requestNews();
+
     }
+  }
 
 </script>
 
 <style scoped>
-#content{
-  color: red;
-}
+  #content {
+    color: red;
+  }
 </style>

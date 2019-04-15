@@ -7,7 +7,7 @@
 
 <script>
   import axios from 'axios';//引入第三方插件
-  import url from '../model/url.js';//引入请求地址
+  import newsApi from '../model/newsApi.js';//引入请求地址
   export default {
     name: "axios",
     data() {
@@ -22,7 +22,7 @@
     methods: {
       getData() {
         const axios = require('axios');
-        axios.get(url).then(res => {
+        axios.get(newsApi.url).then(res => {
             console.log(res);
           }).catch(err => {
           console.log(res);
