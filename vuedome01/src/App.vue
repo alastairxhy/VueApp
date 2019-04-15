@@ -16,9 +16,8 @@
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
-    <v-resource></v-resource>
-    <br><hr>
-    <v-axios></v-axios>
+<!--    <v-resource></v-resource>-->
+<!--    <v-axios></v-axios>-->
   </div>
 
 </template>
