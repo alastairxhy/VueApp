@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p id="content">{{list.title}}</p>
+  <div id="content">
+    <p >{{list.title}}</p>
     <div v-html="list.content"></div>
   </div>
 </template>
@@ -36,7 +36,7 @@
       }
     },
     mounted() {
-      console.log(this.$route.params.aid)
+      console.log(this.$route.params)
       // console.log(this.$route.query)
       this.requestNews();
 
@@ -45,8 +45,13 @@
 
 </script>
 
-<style scoped>
-  #content {
-    color: red;
+<style scoped lang="scss">
+  #content{
+    padding: 1rem;
+    line-height: 2;
+    img{
+      max-width: 100%;
+    }
+
   }
 </style>

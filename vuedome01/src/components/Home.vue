@@ -3,6 +3,7 @@
   <div>
     <h2>这是一个首页组件</h2>
     <button @click="homerun()">主页-点我一下试试</button>
+    <button @click="gotoNews()">主页-跳转至新闻页面</button>
     <button @click="getChildData()">主页-获取子组件header的属性和方法</button>
     <button @click="emitNew()">主页-获取非父子组件new的属性和方法</button>
     <v-header :datahome="homemsg" :title="obj" :homerun="homerun" :home="this" ref="header"></v-header>
@@ -64,6 +65,9 @@
       emitNew() {
         //广播
         emitvue.$emit('home-msg', this.homemsg)
+      },
+      gotoNews(){
+        this.$router.push({ path:'content/495'})
       }
     },
     mounted() {

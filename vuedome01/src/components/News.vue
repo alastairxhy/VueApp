@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <ul> 这是新闻组件
+  <div id="News">
+    <ul class="list"> 这是新闻组件
       <button @click="emitHome()">新闻-获取非父子组件home的属性和方法</button>
       <!--        <v-header ></v-header>-->
       <li v-for="(listitem,key) in list" >
@@ -57,6 +57,16 @@
 
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .list{
+    li{
+      height: 3.4rem;
+      line-height: 3.4rem;
+      boder-bottom:1px solid #eee;
+      font-size: 1.6rem;
+      a{
+        color: #666;
+      }
+    }
+  }
 </style>
