@@ -22,7 +22,7 @@
     name: "Content",
     data() {
       return {
-        list: {}
+        list: []
       }
     },
     methods: {
