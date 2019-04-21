@@ -1,9 +1,9 @@
 <template>
   <!--vue的模板里面 所有的内容要被一个根节点包含起来 -->
   <div id="app">
-<!--    引入动态路由，暂时注释-->
-<!--    <v-home></v-home>-->
-<!--    <v-news></v-news>-->
+    <!--    引入动态路由，暂时注释-->
+    <!--    <v-home></v-home>-->
+    <!--    <v-news></v-news>-->
     <div class="header">
       <!-- 使用 router-link 组件来导航. -->
       <!-- 通过传入 `to` 属性指定链接. -->
@@ -16,9 +16,10 @@
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
-<!--    <v-resource></v-resource>-->
-<!--    <v-axios></v-axios>-->
+    <!--    <v-resource></v-resource>-->
+    <!--    <v-axios></v-axios>-->
   </div>
+
 
 </template>
 
@@ -34,7 +35,6 @@
   * import Home from './components/Home.vue'; //引入主页组件
   * import News from './components/News.vue'; //引入新闻组件
   * */
-
   import Resource from './components/Resource.vue'; //引入resource请求服务器组件
   import Axios from "./components/Axios"; //引入axios请求服务器组件
   export default {
@@ -44,20 +44,21 @@
         msg: ""
       }
     },
-    components:{
-      'v-resource':Resource,
-      'v-axios':Axios
+    components: {
+      'v-resource': Resource,
+      'v-axios': Axios,
     }
   }
 </script>
 
-<style lang="scss" >
-  .header{
+<style lang="scss">
+  .header {
     height: 4.4rem;
     background: #000;
-    line-height:4.4rem;
+    line-height: 4.4rem;
     text-align: center;
-    a{
+
+    a {
       color: #fff;
     }
   }

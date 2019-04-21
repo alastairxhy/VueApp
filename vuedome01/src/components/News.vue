@@ -1,7 +1,6 @@
 <template>
   <div id="News">
     <ul class="list"> 这是新闻组件
-      <button @click="emitHome()">新闻-获取非父子组件home的属性和方法</button>
       <!--        <v-header ></v-header>-->
       <li v-for="(listitem,key) in list" >
         <router-link :to="'/content/'+listitem.aid" >{{listitem.title}}</router-link>
@@ -29,10 +28,6 @@
       alternew(){
         alter('我是新闻组件');
       },
-      emitHome() {
-        //广播
-        emitvue.$emit('new-msg', [this.newsmsg,this.newid])
-      },
       getNewsData(){
         this.$http.jsonp(newsApi.url).then((res)=>{
           console.log(res.body.result);
@@ -43,10 +38,6 @@
       }
     },
     mounted() {
-      //监听广播
-      emitvue.$on('home-msg', (res) => {
-        console.log(res);
-      });
       this.getNewsData();
     },
 

@@ -6,9 +6,9 @@
       调用父组件的数据:
       {{datahome}}***{{title}}
     </div>
-    <button @click="headerrun()">头部-点我一下试试</button>
-    <button @click="homerun(123)">调用父组件方法-点我一下试试</button>
-    <button @click="getParentData()">主页-获取父组件的属性和方法</button>
+    <mt-button plain size="small" @click.native="headerrun()">头部-点我一下试试</mt-button>
+    <mt-button plain size="small" @click.native="homerun(123)">调用父组件方法-点我一下试试</mt-button>
+    <mt-button plain size="small" @click.native="getParentData()">主页-获取父组件的属性和方法</mt-button>
   </div>
 </template>
 
@@ -30,7 +30,7 @@
       datahome:String,
       title:Array,
       homerun:Function,
-      // home:Object
+      home:Object
     },
     methods: {
       headerrun() {

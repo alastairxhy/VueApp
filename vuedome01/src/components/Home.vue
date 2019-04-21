@@ -2,10 +2,9 @@
   <!--所有的组件必须被根节点包含起来-->
   <div>
     <h2>这是一个首页组件</h2>
-    <button @click="homerun()">主页-点我一下试试</button>
-    <button @click="gotoNews()">主页-跳转至新闻页面</button>
-    <button @click="getChildData()">主页-获取子组件header的属性和方法</button>
-    <button @click="emitNew()">主页-获取非父子组件new的属性和方法</button>
+    <mt-button plain size="small" @click.native="homerun('123')">主页-点我一下试试</mt-button>
+    <mt-button plain size="small" @click.native="gotoNews()">主页-跳转至新闻页面</mt-button>
+    <mt-button plain size="small" @click.native="getChildData()">主页-获取子组件header的属性和方法</mt-button>
     <v-header :datahome="homemsg" :title="obj" :homerun="homerun" :home="this" ref="header"></v-header>
     <!--绑定title 是为了告诉Vue title是数字 而不是字符串-->
     <!--验证 props    title:String-->
@@ -36,6 +35,7 @@
       return {
         homemsg: "我是home",
         homeid: '1',
+        werrwe:'22',
         obj: [
           {
             id: 1,
@@ -62,19 +62,11 @@
       getChildFunction() {
         this.$refs.header.headerconsole();
       },
-      emitNew() {
-        //广播
-        emitvue.$emit('home-msg', this.homemsg)
-      },
       gotoNews(){
         this.$router.push({ path:'content/495'})
       }
     },
     mounted() {
-      //监听广播
-      emitvue.$on('new-msg', (res) => {
-        console.log(res[1])
-      })
     },
     components: {
       'v-header': Header

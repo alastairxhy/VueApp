@@ -3,8 +3,15 @@ import App from './App.vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 
+//引入Mint UI
+import Mint from 'mint-ui';
+Vue.use(Mint);
+import 'mint-ui/lib/style.css'
+
+
 Vue.use(VueResource);
 Vue.use(VueRouter);
+
 
 //1.创建组件
 import Home from './components/Home';
