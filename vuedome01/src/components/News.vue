@@ -1,19 +1,24 @@
 <template>
   <div id="News">
-    <ul class="list"> 这是新闻组件
-      <!--        <v-header ></v-header>-->
-      <li v-for="(listitem,key) in list" >
-        <router-link :to="'/content/'+listitem.aid" >{{listitem.title}}</router-link>
+    <ul class="list"
+        v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="5">
+      <li v-for="(listitem,key) in list">
+        <router-link :to="'/content/'+listitem.aid">{{listitem.title}}</router-link>
       </li>
     </ul>
+    <!--    <ul-->
+    <!--      v-infinite-scroll="loadMore"-->
+    <!--      infinite-scroll-disabled="loading"-->
+    <!--      infinite-scroll-distance="10">-->
+    <!--      <li v-for="item in list">{{ item }}</li>-->
+    <!--    </ul>-->
   </div>
 </template>
 
 <script>
-  import newsApi from '../model/newsApi.js'; //引入接口
-  import Header from './Header.vue'; //引入头部组件
-  import emitvue from '../model/emit.js';
-
+  import newsApi from '../model/newsApi.js';
 
   export default {
     name: "News",
@@ -21,41 +26,60 @@
       return {
         newsmsg: '我是new',
         newid: 2,
-        list:[]
+        list: [],
+        list2: []
       }
     },
     methods: {
-      alternew(){
+      alternew() {
         alter('我是新闻组件');
       },
-      getNewsData(){
-        this.$http.jsonp(newsApi.url).then((res)=>{
+      getNewsData() {
+        this.$http.jsonp(newsApi.url + 1).then((res) => {
           console.log(res.body.result);
           this.list = res.body.result;
-        },(err)=>{
+        }, (err) => {
           console.log(err)
         })
+      },
+      loadMore() {
+        // this.loading = true;
+        setTimeout(() => {
+          let page = this.list.length / 20 + 1;
+          console.log(page)
+          this.$http.jsonp(newsApi.url + page).then((res) => {
+            // let last = this.list[this.list.length - 1];
+            var len = res.body.result.length;
+            for (let i = 0; i < 20; i++) {
+              // this.list.push(last + i);
+              this.list.push(res.body.result[i])
+            }
+            if (len < 20) {
+              this.loading = true;
+            } else {
+              this.loading = false;
+            }
+          })
+          // this.loading = false;
+        }, 2500);
       }
     },
     mounted() {
       this.getNewsData();
     },
-
-    components: {
-      'v-header': Header
-    }
   }
 
 </script>
 
 <style scoped lang="scss">
-  .list{
-    li{
-      height: 3.4rem;
-      line-height: 3.4rem;
-      boder-bottom:1px solid #eee;
-      font-size: 1.6rem;
-      a{
+  .list {
+    li {
+      height: 3rem;
+      line-height: 1.5;
+      boder-bottom: 1px solid #eee;
+      font-size: 1rem;
+
+      a {
         color: #666;
       }
     }
