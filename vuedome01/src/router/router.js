@@ -16,8 +16,12 @@ import Home from '../components/Home';
 import News from '../components/News';
 import Content from "../components/Content";
 import User from "../components/User";
-import Useradd from "../components/user/adduser";
-import Userlist from "../components/user/userlist";
+  import Useradd from "../components/user/adduser";
+  import Userlist from "../components/user/userlist";
+import Vuex from "../components/vuex";
+
+
+
 
 //2.配置路由
 const routes = [
@@ -34,6 +38,9 @@ const routes = [
         path: 'userlist', component: Userlist
       },
     ]
+  },
+  {
+    path:'/vuex',component:Vuex
   }
 ]
 //3.创建 router 实例

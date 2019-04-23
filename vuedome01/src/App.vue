@@ -12,10 +12,12 @@
       <router-link to="/home">主页</router-link>
       <router-link to="/news">新闻</router-link>
       <router-link to="/user">用户</router-link>
+      <router-link to="/vuex">vuex</router-link>
     </div>
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
     <router-view></router-view>
+
     <!--    <v-resource></v-resource>-->
     <!--    <v-axios></v-axios>-->
   </div>
