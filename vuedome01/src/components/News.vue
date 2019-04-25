@@ -19,6 +19,7 @@
 
 <script>
   import newsApi from '../model/newsApi.js';
+  import store from  '../vuex/store';
 
   export default {
     name: "News",
@@ -26,46 +27,48 @@
       return {
         newsmsg: '我是new',
         newid: 2,
-        list: [],
-        list2: []
+        list:[]
       }
     },
     methods: {
       alternew() {
         alter('我是新闻组件');
       },
-      getNewsData() {
-        this.$http.jsonp(newsApi.url + 1).then((res) => {
-          console.log(res.body.result);
-          this.list = res.body.result;
-        }, (err) => {
-          console.log(err)
-        })
-      },
+      // getNewsData() {
+      //   this.$http.jsonp(newsApi.url + 1).then((res) => {
+      //     console.log(res.body.result);
+      //     this.list = res.body.result;
+      //   }, (err) => {
+      //     console.log(err)
+      //   })
+      // },
       loadMore() {
-        // this.loading = true;
-        setTimeout(() => {
-          let page = this.list.length / 20 + 1;
+
+        /*如何实现数据持久化
+        * 1.请求数据
+        * 2.将数据保存至vuex
+        * 3.从vuex中传回数据*/
+          let page = store.state.list.length / 20 + 1;
           console.log(page)
           this.$http.jsonp(newsApi.url + page).then((res) => {
             // let last = this.list[this.list.length - 1];
+            console.log(res)
             var len = res.body.result.length;
             for (let i = 0; i < 20; i++) {
-              // this.list.push(last + i);
-              this.list.push(res.body.result[i])
+              store.state.list.push(res.body.result[i])
+              // this.list.push(res.body.result[i])
             }
             if (len < 20) {
               this.loading = true;
             } else {
               this.loading = false;
             }
-          })
-          // this.loading = false;
-        }, 2500);
+      })
       }
     },
+
     mounted() {
-      this.getNewsData();
+      this.list = store.state.list;
     },
   }
 

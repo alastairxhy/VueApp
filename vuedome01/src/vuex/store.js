@@ -16,7 +16,8 @@ Vue.use(Vuex)
 const  store = new Vuex.Store({
   //定义数据 state在vuex中用于存储数据
   state: {
-    count: 1
+    count: 1,
+    list:[]
   },
 
   //定义方法 mutations在vuex中用于存放方法
