@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 
 //引入Mint UI
 import Mint from 'mint-ui';
+
 Vue.use(Mint);
 import 'mint-ui/lib/style.css';
 
@@ -16,11 +17,11 @@ import Home from '../components/Home';
 import News from '../components/News';
 import Content from "../components/Content";
 import User from "../components/User";
-  import Useradd from "../components/user/adduser";
-  import Userlist from "../components/user/userlist";
+ import Useradd from "../components/user/adduser";
+ import Userlist from "../components/user/userlist";
+import Test from "../components/test";
+ import Alterbox from '../components/test/Alterbox'
 import Vuex from "../components/vuex";
-
-
 
 
 //2.配置路由
@@ -32,16 +33,17 @@ const routes = [
   {
     path: '/user', component: User,
     children: [
-      {
-        path: 'useradd', component: Useradd
-      }, {
-        path: 'userlist', component: Userlist
-      },
+      {path: 'useradd', component: Useradd},
+      {path: 'userlist', component: Userlist},
     ]
   },
   {
-    path:'/vuex',component:Vuex
-  }
+    path: '/test', component: Test,
+    children: [
+      {path: 'alterbox', component: Alterbox}
+    ]
+  },
+  {path: '/vuex', component: Vuex}
 ]
 //3.创建 router 实例
 const router = new VueRouter({

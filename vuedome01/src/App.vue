@@ -12,6 +12,7 @@
       <router-link to="/home">主页</router-link>
       <router-link to="/news">新闻</router-link>
       <router-link to="/user">用户</router-link>
+      <router-link to="/test">Test</router-link>
       <router-link to="/vuex">vuex</router-link>
     </div>
     <!-- 路由出口 -->
